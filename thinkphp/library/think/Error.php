@@ -26,9 +26,9 @@ class Error
     public static function register()
     {
         error_reporting(E_ALL);
-        set_error_handler([__CLASS__, 'appError']);
-        set_exception_handler([__CLASS__, 'appException']);
-        register_shutdown_function([__CLASS__, 'appShutdown']);
+        set_error_handler([__CLASS__, 'appError']);  // 设置用户的函数 (error_handler) 来处理脚本中出现的错误。
+        set_exception_handler([__CLASS__, 'appException']);  // 设置默认的异常处理程序
+        register_shutdown_function([__CLASS__, 'appShutdown']);  // 注册一个 callback ，它会在脚本执行完成或者 exit() 后被调用。
     }
 
     /**
@@ -118,6 +118,7 @@ class Error
             $class = Config::get('exception_handle');
 
             if ($class && is_string($class) && class_exists($class) &&
+                //如果此对象是该类的子类
                 is_subclass_of($class, "\\think\\exception\\Handle")
             ) {
                 $handle = new $class;

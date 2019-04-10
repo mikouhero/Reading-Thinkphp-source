@@ -77,7 +77,6 @@ class App
     public static function run(Request $request = null)
     {
         $request = is_null($request) ? Request::instance() : $request;
-
         try {
             $config = self::initCommon();
 

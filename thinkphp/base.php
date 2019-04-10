@@ -62,10 +62,10 @@ if (is_file(ROOT_PATH . '.env')) {
 
 
 // 注册自动加载
-\think\Loader::register();
+\think\Loader::register();   // 高深 不太理解
 
 // 注册错误和异常处理机制
-\think\Error::register();
+\think\Error::register();    // 了解明白 
 
 // 加载惯例配置文件
 \think\Config::set(include THINK_PATH . 'convention' . EXT);

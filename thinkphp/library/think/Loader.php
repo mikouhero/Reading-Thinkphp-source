@@ -78,7 +78,6 @@ class Loader
                 }
             }
         }
-
         if ($file = self::findFile($class)) {
             // 非 Win 环境不严格区分大小写
             if (!IS_WIN || pathinfo($file, PATHINFO_FILENAME) == pathinfo(realpath($file), PATHINFO_FILENAME)) {
@@ -86,7 +85,6 @@ class Loader
                 return true;
             }
         }
-
         return false;
     }
 
@@ -282,15 +280,21 @@ class Loader
     public static function register($autoload = null)
     {
         // 注册系统自动加载
+        //  spl_autoload_register 函数注册到SPL __autoload函数队列中。如果该队列中的函数尚未激活，则激活它们。
         spl_autoload_register($autoload ?: 'think\\Loader::autoload', true, true);
+        // 默认注册think\\Loader::autoload
 
         // Composer 自动加载支持
         if (is_dir(VENDOR_PATH . 'composer')) {
+
             if (PHP_VERSION_ID >= 50600 && is_file(VENDOR_PATH . 'composer' . DS . 'autoload_static.php')) {
                 require VENDOR_PATH . 'composer' . DS . 'autoload_static.php';
-
+                                    //返回由已定义类的名字所组成的数组
                 $declaredClass = get_declared_classes();
+
                 $composerClass = array_pop($declaredClass);
+
+              // ?????
 
                 foreach (['prefixLengthsPsr4', 'prefixDirsPsr4', 'fallbackDirsPsr4', 'prefixesPsr0', 'fallbackDirsPsr0', 'classMap', 'files'] as $attr) {
                     if (property_exists($composerClass, $attr)) {
