@@ -76,10 +76,11 @@ class App
      */
     public static function run(Request $request = null)
     {
+//        var_dump($request);die;
         $request = is_null($request) ? Request::instance() : $request;
         try {
+            // 返回配置信息
             $config = self::initCommon();
-
             // 模块/控制器绑定
             if (defined('BIND_MODULE')) {
                 BIND_MODULE && Route::bind(BIND_MODULE);
@@ -179,15 +180,18 @@ class App
 
             // 初始化应用
             $config       = self::init();
+
             self::$suffix = $config['class_suffix'];
 
             // 应用调试模式
             self::$debug = Env::get('app_debug', Config::get('app_debug'));
 
             if (!self::$debug) {
+                // 关闭错误显示
                 ini_set('display_errors', 'Off');
             } elseif (!IS_CLI) {
                 // 重新申请一块比较大的 buffer
+                //返回嵌套的输出缓冲处理程序的级别；或者是，如果输出缓冲区不起作用，返回零。
                 if (ob_get_level() > 0) {
                     $output = ob_get_clean();
                 }
@@ -233,13 +237,16 @@ class App
      * @param string $module 模块名
      * @return array
      */
+
+    //  在app下新建的 xxx_init.php 文件为配置文件
     private static function init($module = '')
     {
         // 定位模块目录
         $module = $module ? $module . DS : '';
-
         // 加载初始化文件
+
         if (is_file(APP_PATH . $module . 'init' . EXT)) {
+
             include APP_PATH . $module . 'init' . EXT;
         } elseif (is_file(RUNTIME_PATH . $module . 'init' . EXT)) {
             include RUNTIME_PATH . $module . 'init' . EXT;
@@ -255,14 +262,16 @@ class App
             if (is_dir(CONF_PATH . $module . 'extra')) {
                 $dir   = CONF_PATH . $module . 'extra';
                 $files = scandir($dir);
+//                列出指定路径中的文件和目录
                 foreach ($files as $file) {
+                    // 返回文件路径的信息
                     if ('.' . pathinfo($file, PATHINFO_EXTENSION) === CONF_EXT) {
                         $filename = $dir . DS . $file;
                         Config::load($filename, pathinfo($file, PATHINFO_FILENAME));
                     }
                 }
             }
-
+//            echo json_encode($config);die;
             // 加载应用状态配置
             if ($config['app_status']) {
                 Config::load(CONF_PATH . $module . $config['app_status'] . CONF_EXT);
