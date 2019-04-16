@@ -38,17 +38,21 @@ class Error
      * @return void
      */
     public static function appException($e)
-    {
+    {        //用于确定一个 PHP 变量是否属于某一类 class 的实例：
         if (!$e instanceof \Exception) {
             $e = new ThrowableError($e);
         }
 
+        // 获取异常处理对象
         $handler = self::getExceptionHandler();
+
+        // 记录日志
         $handler->report($e);
 
         if (IS_CLI) {
             $handler->renderForConsole(new ConsoleOutput, $e);
         } else {
+            // 返回信息掉到客户端
             $handler->render($e)->send();
         }
     }
@@ -83,6 +87,7 @@ class Error
     public static function appShutdown()
     {
         // 将错误信息托管至 think\ErrorException
+                    // 获取最后发生的错误
         if (!is_null($error = error_get_last()) && self::isFatal($error['type'])) {
             self::appException(new ErrorException(
                 $error['type'], $error['message'], $error['file'], $error['line']
@@ -109,6 +114,10 @@ class Error
      * @access public
      * @return Handle
      */
+
+    // 默认获取think\exception\Handle 异常处理对象
+    // 可以在config.php 中修改  exception_handle 的值
+
     public static function getExceptionHandler()
     {
         static $handle;

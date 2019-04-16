@@ -40,7 +40,7 @@ require CORE_PATH . 'Loader.php';
 // 加载环境变量配置文件
 if (is_file(ROOT_PATH . '.env')) {
 
-    // envw文件格式和php.ini格式相同
+    // env文件格式和php.ini格式相同
 
     // parse_ini_file() 解析一个配置文件 成功返回array   失败  false
 

@@ -37,6 +37,7 @@ class Handle
      * @param  \Exception $exception
      * @return void
      */
+    // 记录日志
     public function report(Exception $exception)
     {
         if (!$this->isIgnoreReport($exception)) {
@@ -84,6 +85,7 @@ class Handle
     public function render(Exception $e)
     {
         if ($this->render && $this->render instanceof \Closure) {
+            // 调用回调函数，并把一个数组参数作为回调函数的参数
             $result = call_user_func_array($this->render, [$e]);
             if ($result) {
                 return $result;
