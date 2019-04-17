@@ -47,3 +47,9 @@
 ## 4、dispatch（$dispatch,$type='module'） 设置当前请求的调度信息
 > 1、给静态变量 dispatch 赋值 ['type'=>$type,$type=$dispatch]
  
+## 5、invokeFunction($callback,$var=[])执行函数或者闭包方法 支持参数调用
+> 1、通过内置类ReflectionFunction处理回调 拿到对象  
+> 2、绑定参数   
+> 3、记录日志  
+> 4、通过内置类的invokeArgs() 处理 并返回结果
+
