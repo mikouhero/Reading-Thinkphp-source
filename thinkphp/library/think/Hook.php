@@ -99,7 +99,6 @@ class Hook
                 break;
             }
         }
-
         return $once ? end($results) : $results;
     }
 

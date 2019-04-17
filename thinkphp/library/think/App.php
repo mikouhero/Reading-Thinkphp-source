@@ -293,6 +293,8 @@ class App
                 Lang::load($path . 'lang' . DS . Request::instance()->langset() . EXT);
             }
         }
+//        echo json_encode($config);die;
+//        echo json_encode(Config::get());die;
 
         return Config::get();
     }
