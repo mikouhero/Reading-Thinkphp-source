@@ -40,8 +40,10 @@
 > 1、获取init() 方法的公共参数  
 > 2、调试模式的参数  
 > 3、加载扩展文件函数 extra_file_list  
-> 4、加载公共文件 和语言包
-> 5、设置时区  监听 app_init
-> 6、返回配置信息
+> 4、加载公共文件 和语言包  
+> 5、设置时区  监听 app_init  
+> 6、返回配置信息    
 
+## 4、dispatch（$dispatch,$type='module'） 设置当前请求的调度信息
+> 1、给静态变量 dispatch 赋值 ['type'=>$type,$type=$dispatch]
  
