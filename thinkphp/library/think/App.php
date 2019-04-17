@@ -76,8 +76,9 @@ class App
      */
     public static function run(Request $request = null)
     {
-//        var_dump($request);die;
         $request = is_null($request) ? Request::instance() : $request;
+//        var_dump($request);die;
+
         try {
             // 返回配置信息
             $config = self::initCommon();
@@ -138,8 +139,9 @@ class App
                 $config['request_cache_expire'],
                 $config['request_cache_except']
             );
-
+            // 执行的结果
             $data = self::exec($dispatch, $config);
+
         } catch (HttpResponseException $exception) {
             $data = $exception->getResponse();
         }
@@ -163,7 +165,6 @@ class App
 
         // 监听 app_end
         Hook::listen('app_end', $response);
-
         return $response;
     }
 
