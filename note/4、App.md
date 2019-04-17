@@ -53,3 +53,30 @@
 > 3、记录日志  
 > 4、通过内置类的invokeArgs() 处理 并返回结果
 
+## 6、invokeMethod($methond,$var=[]) _调用反射执行类的方法 支持参数绑定
+> 1、调用ReflectionFunction内置类的invokeArgs方法  使用数组给方法传送参数，并执行他->执行控制器的action。 返回结果
+## 7、invokeClass($class,$var=[]) _调用反射执行类的方法 支持参数绑定
+
+## 8、bindParams($reflect,$var=[])  绑定参数
+> 1、自动获取请求变量  
+> 2、URL参数方式解析  
+> 3、当回调函数定义的参数数目>0 ,通过getParamValue获取参数并返回  
+
+## 9、 getParamValue($param, &$vars, $type) 获取参数值
+
+## 10、exec($dispatch,$config) 执行调用分发 
+> 1、通过$dispatch['type']的值进行不同 的操作
+
+## 11、module($result, $config, $convert = null) 执行模块
+>1、$resutl 数组 包含模块/控制器/操作  
+>2、判断模块  
+>3、当前模块路径  
+>4、获取操作名   
+>5、设置当前请求的控制器、操作  
+>6、Load 加载 操作的对象  
+>7、 返回invokeMethod()执行的结果
+
+## 12、routeCheck($request,$config) 路由检测 
+>1、获取path 路径
+
+

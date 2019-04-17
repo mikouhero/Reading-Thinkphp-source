@@ -113,7 +113,10 @@ class App
 
             // 未设置调度信息则进行 URL 路由检测
             if (empty($dispatch)) {
+//                var_dump($dispatch);
                 $dispatch = self::routeCheck($request, $config);
+//                var_dump($dispatch);
+
             }
 
             // 记录当前调度信息
@@ -338,6 +341,7 @@ class App
      */
     public static function invokeMethod($method, $vars = [])
     {
+//        var_dump($method,$vars);die;
         if (is_array($method)) {
             $class   = is_object($method[0]) ? $method[0] : self::invokeClass($method[0]);
             $reflect = new \ReflectionMethod($class, $method[1]);
@@ -346,10 +350,13 @@ class App
             $reflect = new \ReflectionMethod($method);
         }
 
+//        var_dump($reflect);die;
         $args = self::bindParams($reflect, $vars);
-
+//        var_dump($args);die;
         self::$debug && Log::record('[ RUN ] ' . $reflect->class . '->' . $reflect->name . '[ ' . $reflect->getFileName() . ' ]', 'info');
 
+//       invokeArgs  使用数组给方法传送参数，并执行他。
+//        var_dump($class);die;
         return $reflect->invokeArgs(isset($class) ? $class : null, $args);
     }
 
@@ -380,12 +387,14 @@ class App
     {
         // 自动获取请求变量
         if (empty($vars)) {
+            // URL参数方式 0 按名称成对解析 1 按顺序解析
             $vars = Config::get('url_param_type') ?
             Request::instance()->route() :
             Request::instance()->param();
         }
 
         $args = [];
+         // 获取函数定义的参数数目，包括可选参数
         if ($reflect->getNumberOfParameters() > 0) {
             // 判断数组类型 数字数组时按顺序绑定参数
             reset($vars);
@@ -395,7 +404,6 @@ class App
                 $args[] = self::getParamValue($param, $vars, $type);
             }
         }
-
         return $args;
     }
 
@@ -409,9 +417,10 @@ class App
      */
     private static function getParamValue($param, &$vars, $type)
     {
+        // 获取参数名称
         $name  = $param->getName();
+        // 获取参数的类型提示类，
         $class = $param->getClass();
-
         if ($class) {
             $className = $class->getName();
             $bind      = Request::instance()->$name;
@@ -465,6 +474,7 @@ class App
                     $config,
                     isset($dispatch['convert']) ? $dispatch['convert'] : null
                 );
+
                 break;
             case 'controller': // 执行控制器操作
                 $vars = array_merge(Request::instance()->param(), $dispatch['var']);
@@ -503,10 +513,10 @@ class App
      */
     public static function module($result, $config, $convert = null)
     {
+//        var_dump($result);die;
         if (is_string($result)) {
             $result = explode('/', $result);
         }
-
         $request = Request::instance();
 
         if ($config['app_multi_module']) {
@@ -561,11 +571,10 @@ class App
 
         // 获取控制器名
         $controller = strip_tags($result[1] ?: $config['default_controller']);
-
+        //控制器必须是英文
         if (!preg_match('/^[A-Za-z](\w|\.)*$/', $controller)) {
             throw new HttpException(404, 'controller not exists:' . $controller);
         }
-
         $controller = $convert ? strtolower($controller) : $controller;
 
         // 获取操作名
@@ -576,13 +585,16 @@ class App
             $actionName = $convert ? strtolower($actionName) : $actionName;
         }
 
+//        var_dump($controller,$actionName);die;
         // 设置当前请求的控制器、操作
         $request->controller(Loader::parseName($controller, 1))->action($actionName);
 
         // 监听module_init
         Hook::listen('module_init', $request);
 
+//        var_dump($controller);die;
         try {
+            // 操作的对象
             $instance = Loader::controller(
                 $controller,
                 $config['url_controller_layer'],
@@ -595,11 +607,16 @@ class App
 
         // 获取当前操作名
         $action = $actionName . $config['action_suffix'];
+//    var_dump($action);die;
+//            var_dump($instance);die;
 
         $vars = [];
+
         if (is_callable([$instance, $action])) {
             // 执行操作方法
+//            var_dump($instance);die;
             $call = [$instance, $action];
+//            var_dump($call);die;
             // 严格获取当前操作方法名
             $reflect    = new \ReflectionMethod($instance, $action);
             $methodName = $reflect->getName();
@@ -631,6 +648,7 @@ class App
      */
     public static function routeCheck($request, array $config)
     {
+
         $path   = $request->path();
         $depr   = $config['pathinfo_depr'];
         $result = false;
