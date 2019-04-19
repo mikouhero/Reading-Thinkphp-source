@@ -127,6 +127,7 @@ class App extends Container
     public function __construct($appPath = '')
     {
         $this->thinkPath = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR;
+        var_dump($this->thinkPath);die;
         $this->path($appPath);
     }
 
