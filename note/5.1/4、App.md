@@ -102,4 +102,40 @@
      */
     protected $initialized = false;
     
-# 2、
+# 2、方法
+## 2.1 bind($bind)        绑定模块或者控制器
+## 2.2 path($path)        设置应用类库目录 
+## 2.3 initialize()     初始化应用
+> 1、通过initialized属性判断是否初始化  
+> 2、初始化目录  
+> 3、加载惯例配置文件  
+> 4、 设置路径环境变量  
+> 5、加载环境变量配置文件  
+> 6、初始化应用  
+> 7、注册异常处理类  
+> 8、注册根命名空间   
+> 9、加载composer autofile文件  
+> 10、注册类库别名  
+> 11、数据库配置初始化  
+> 12、/路由初始化  
+> 13、加载composer autofile文件  
+> 14、加载composer autofile文件  
+
+## 2.4 init($module='')  初始化应用或模块 
+> 1、定位模块目录  
+> 2、判断init.php 文件  
+> 3、 加载行为扩展文件 、加载公共文件、 加载系统助手函数 、中间件、注册服务的容器对象实例、自动读取配置文件  
+> 4、设置模块路径  
+
+## 2.5 containerConfigUpdate($model)  对容器中的对象实例进行配置更新
+## 2.6 getRouteCacheKey() 获取缓存的路由key 
+## 2.7 loadLangPack() 加载语言包 默认 app中的 default_lang 
+## 2.8 checkRequestCache() 设置当前地址的请求缓存   
+## 2.9 setResponseCache()   
+## 2.10 dispatch()  设置当前请求的调度信息
+## 2.11 routeInit() 路由初始化 导入路由定义规则
+>1、加载route 下的文件
+## 2.12 routeCheck() URL路由检测（根据PATH_INFO)
+> 1、
+
+> 

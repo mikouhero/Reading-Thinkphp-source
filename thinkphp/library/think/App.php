@@ -127,7 +127,8 @@ class App extends Container
     public function __construct($appPath = '')
     {
         $this->thinkPath = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR;
-        var_dump($this->thinkPath);die;
+        // thinkphp 路径
+//        var_dump($this->thinkPath);die;
         $this->path($appPath);
     }
 
@@ -151,8 +152,9 @@ class App extends Container
      */
     public function path($path)
     {
+//        返回规范化的绝对路径名
         $this->appPath = $path ? realpath($path) . DIRECTORY_SEPARATOR : $this->getAppPath();
-
+//        var_dump($path);die;
         return $this;
     }
 
@@ -171,19 +173,26 @@ class App extends Container
         $this->beginTime   = microtime(true);
         $this->beginMem    = memory_get_usage();
 
+        // 应用根目录
         $this->rootPath    = dirname($this->appPath) . DIRECTORY_SEPARATOR;
+
         $this->runtimePath = $this->rootPath . 'runtime' . DIRECTORY_SEPARATOR;
         $this->routePath   = $this->rootPath . 'route' . DIRECTORY_SEPARATOR;
         $this->configPath  = $this->rootPath . 'config' . DIRECTORY_SEPARATOR;
 
+//        var_dump($this);die;
         static::setInstance($this);
-
+//        var_dump($this);die;
+//        绑定一个类实例当容器
         $this->instance('app', $this);
 
+//        var_dump($this->env);die;
         $this->configExt = $this->env->get('config_ext', '.php');
 
         // 加载惯例配置文件
         $this->config->set(include $this->thinkPath . 'convention.php');
+        //配置信息
+//        var_dump($this->config);die;
 
         // 设置路径环境变量
         $this->env->set([
@@ -206,6 +215,7 @@ class App extends Container
         $this->env->set('app_namespace', $this->namespace);
 
         // 注册应用命名空间
+
         Loader::addNamespace($this->namespace, $this->appPath);
 
         // 初始化应用
@@ -449,7 +459,6 @@ class App extends Container
         } else {
             $routeKey = md5($this->request->baseUrl(true) . ':' . $this->request->method());
         }
-
         return $routeKey;
     }
 
@@ -530,12 +539,7 @@ class App extends Container
         $this->appDebug && $this->log->record($msg, $type);
     }
 
-    /**
-     * 获取配置参数 为空则获取所有配置
-     * @access public
-     * @param  string    $name 配置参数名（支持二级配置 .号分割）
-     * @return mixed
-     */
+
     public function config($name = '')
     {
         return $this->config->get($name);
@@ -550,6 +554,7 @@ class App extends Container
     {
         // 路由检测
         $files = scandir($this->routePath);
+//        var_dump($files);die;
         foreach ($files as $file) {
             if (strpos($file, '.php')) {
                 $filename = $this->routePath . $file;
@@ -560,7 +565,7 @@ class App extends Container
                 }
             }
         }
-
+                //注释路由
         if ($this->route->config('route_annotation')) {
             // 自动生成路由定义
             if ($this->appDebug) {
@@ -616,6 +621,7 @@ class App extends Container
             }
         }
 
+//        var_dump($dispatch);die;
         return $dispatch;
     }
 

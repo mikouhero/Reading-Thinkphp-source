@@ -225,6 +225,7 @@ class Config implements \ArrayAccess
      */
     public function get($name = null, $default = null)
     {
+//        var_dump($name);die;
         if ($name && false === strpos($name, '.')) {
             $name = $this->prefix . '.' . $name;
         }
@@ -258,7 +259,6 @@ class Config implements \ArrayAccess
                 return $default;
             }
         }
-
         return $config;
     }
 
