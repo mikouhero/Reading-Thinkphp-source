@@ -786,6 +786,7 @@ class App extends Container
     public function action($url, $vars = [], $layer = 'controller', $appendSuffix = false)
     {
         $info   = pathinfo($url);
+
         $action = $info['basename'];
         $module = '.' != $info['dirname'] ? $info['dirname'] : $this->request->controller();
         $class  = $this->controller($module, $layer, $appendSuffix);

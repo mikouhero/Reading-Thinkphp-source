@@ -149,29 +149,43 @@
 > $layer 验证层名称  
 > $appendSuffix 是否添加类名后缀
 
->## 2、14 create($name, $layer, $appendSuffix = false, $common = 'common')         实例化应用类库
+## 2、14 create($name, $layer, $appendSuffix = false, $common = 'common')         实例化应用类库
  
      * @param  string $name         类名称
      * @param  string $layer        业务层名称
      * @param  bool   $appendSuffix 是否添加类名后缀
      * @param  string $common       公共模块名 
      
- >## 2.15 model( $name = '', $layer = 'model', $appendSuffix = false, $common = 'common' )   实例化（分层）模型
+## 2.15 model( $name = '', $layer = 'model', $appendSuffix = false, $common = 'common' )   实例化（分层）模型
     * @access public
      * @param  string $name         Model名称
      * @param  string $layer        业务层名称
      * @param  bool   $appendSuffix 是否添加类名后缀
      * @param  string $common       公共模块名
      
- >## 2.16 controller( $name = '', $layer = 'controller', $appendSuffix = false, $common = 'common' )   实例化（分层）模型
+## 2.16 controller( $name = '', $layer = 'controller', $appendSuffix = false, $common = 'common' )  实例化（分层）控制器
     * @access public
      * @param  string $name         Model名称
      * @param  string $layer        业务层名称
      * @param  bool   $appendSuffix 是否添加类名后缀
      * @param  string $common       公共模块名
      
- >## 2.17  validate( $name = '', $layer = 'validate', $appendSuffix = false, $common = 'common' )   实例化（分层）模型
+## 2.17  validate( $name = '', $layer = 'validate', $appendSuffix = false, $common = 'common' )   实例化验证类
     * @access public
      * @param  string $name         Model名称
      * @param  string $layer        业务层名称
      * @param  bool   $appendSuffix 是否添加类名后缀
+     
+## 2.18  action($url, $vars = [], $layer = 'controller', $appendSuffix = false )   远程调用模块的操作方法 
+     * @access public
+     * @param  string       $url          调用地址
+     * @param  string|array $vars         调用参数 支持字符串和数组
+     * @param  string       $layer        要调用的控制层名称
+     * @param  bool         $appendSuffix 是否添加类名后缀
+     
+## 2.20 parseClass($module, $layer, $name, $appendSuffix = false)解析应用类的类名
+     * @access public
+     * @param  string $module 模块名
+     * @param  string $layer  层名 controller model ...
+     * @param  string $name   类名
+     * @param  bool   $appendSuffix
