@@ -144,6 +144,34 @@
 >5、加载路由缓存文件（有缓存的情况下）  
 >6、返回请求调度信息
 
-## 2、13 parseModuleAndClass() 解析模块和类名
+## 2、13 parseModuleAndClass($name,$layer，$appendSuffix) 解析模块和类名
+> $name 资源地址  
+> $layer 验证层名称  
+> $appendSuffix 是否添加类名后缀
 
-> 
+>## 2、14 create($name, $layer, $appendSuffix = false, $common = 'common')         实例化应用类库
+ 
+     * @param  string $name         类名称
+     * @param  string $layer        业务层名称
+     * @param  bool   $appendSuffix 是否添加类名后缀
+     * @param  string $common       公共模块名 
+     
+ >## 2.15 model( $name = '', $layer = 'model', $appendSuffix = false, $common = 'common' )   实例化（分层）模型
+    * @access public
+     * @param  string $name         Model名称
+     * @param  string $layer        业务层名称
+     * @param  bool   $appendSuffix 是否添加类名后缀
+     * @param  string $common       公共模块名
+     
+ >## 2.16 controller( $name = '', $layer = 'controller', $appendSuffix = false, $common = 'common' )   实例化（分层）模型
+    * @access public
+     * @param  string $name         Model名称
+     * @param  string $layer        业务层名称
+     * @param  bool   $appendSuffix 是否添加类名后缀
+     * @param  string $common       公共模块名
+     
+ >## 2.17  validate( $name = '', $layer = 'validate', $appendSuffix = false, $common = 'common' )   实例化（分层）模型
+    * @access public
+     * @param  string $name         Model名称
+     * @param  string $layer        业务层名称
+     * @param  bool   $appendSuffix 是否添加类名后缀

@@ -647,12 +647,15 @@ class App extends Container
      */
     protected function parseModuleAndClass($name, $layer, $appendSuffix)
     {
+//        var_dump($name,$layer,$appendSuffix);
         if (false !== strpos($name, '\\')) {
             $class  = $name;
             $module = $this->request->module();
         } else {
             if (strpos($name, '/')) {
+                var_dump(explode('/', $name, 2));die;
                 list($module, $name) = explode('/', $name, 2);
+
             } else {
                 $module = $this->request->module();
             }
