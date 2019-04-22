@@ -1868,7 +1868,8 @@ class Request
         if (!is_null($dispatch)) {
             $this->dispatch = $dispatch;
         }
-
+//        echo '<pre>';
+//        var_dump($this->dispatch);die;
         return $this->dispatch;
     }
 

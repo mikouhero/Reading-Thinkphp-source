@@ -225,6 +225,7 @@ class App extends Container
         $this->suffix = $this->config('app.class_suffix');
 
         // 应用调试模式
+//    var_dump( $this->config('app.app_debug'));die;
         $this->appDebug = $this->env->get('app_debug', $this->config('app.app_debug'));
         $this->env->set('app_debug', $this->appDebug);
 
@@ -388,16 +389,19 @@ class App extends Container
         try {
             // 初始化应用
             $this->initialize();
-
+//            echo '<pre>';
+//            var_dump($this);die;
             // 监听app_init
             $this->hook->listen('app_init');
 
+//            var_dump($this->bindModule);die;
             if ($this->bindModule) {
                 // 模块/控制器绑定
                 $this->route->bind($this->bindModule);
             } elseif ($this->config('app.auto_bind_module')) {
                 // 入口自动绑定
                 $name = pathinfo($this->request->baseFile(), PATHINFO_FILENAME);
+//                var_dump($name);die;
                 if ($name && 'index' != $name && is_dir($this->appPath . $name)) {
                     $this->route->bind($name);
                 }
@@ -405,17 +409,19 @@ class App extends Container
 
             // 监听app_dispatch
             $this->hook->listen('app_dispatch');
-
+//        echo '<pre>';
             $dispatch = $this->dispatch;
-
+//            var_dump($dispatch);die;
             if (empty($dispatch)) {
                 // 路由检测
                 $dispatch = $this->routeCheck()->init();
+//                var_dump($dispatch);die;
             }
 
             // 记录当前调度信息
             $this->request->dispatch($dispatch);
-
+//            var_dump($this->appDebug);
+//die;
             // 记录路由和请求信息
             if ($this->appDebug) {
                 $this->log('[ ROUTE ] ' . var_export($this->request->routeInfo(), true));
@@ -444,7 +450,8 @@ class App extends Container
         });
 
         $response = $this->middleware->dispatch($this->request);
-
+//echo '<pre>';
+//        var_dump($response);die;
         // 监听app_end
         $this->hook->listen('app_end', $response);
 
@@ -608,7 +615,6 @@ class App extends Container
 
         // 路由检测 返回一个Dispatch对象
         $dispatch = $this->route->check($path, $must);
-
         if (!empty($routeKey)) {
             try {
                 if ($option) {

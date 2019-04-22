@@ -189,3 +189,14 @@
      * @param  string $layer  层名 controller model ...
      * @param  string $name   类名
      * @param  bool   $appendSuffix
+     
+## 2.21 run() 执行应用程序
+>1、初始化应用 $this->initialize  
+>2、 监听app_init  
+>3、 判断模块  
+>4、获取应用调度实例  
+>5、路由检测  
+>6、请求信息加入中间件  
+>7、获取中间件返回的结果   并返回
+
+
