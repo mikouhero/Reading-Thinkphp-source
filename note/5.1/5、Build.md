@@ -28,5 +28,35 @@
 ## 8、buildRoute($suffix = false, $layer = '') 根据注释自动生成路由规则  $suffix 类库后缀  $layer  控制器层目录名
 
 
+## 9 函数 
+- is_writable()   判断给定的文件名是否可写
+- touch() 尝试将由 filename 给出的文件的访问和修改时间设定为给出的 time。 注意访问时间总是会被修改的，不论有几个参数。如果文件不存在，则会被创建。
+- unlink() 删除文件
+- glob ( string $pattern [, int $flags = 0 ] ) 寻找与模式匹配的文件路径
+- mkdir() 
+- dirname()
+- basename()  
+- pathinfo()
+- is_dir()
+- is_file()
+- trim()
+- ucfirst()
+- strpos()
+- str_replace()
+-  strlen()
+- strstr()
+- substr()
+- preg_replace()
+- explode()
+- implode()
+- array_map()
+- count()
+- array_search()
+- array_slice()
+- preg_replace_callback  执行一个正则表达式搜索并且使用一个回调进行替换
+- preg_replace()
+ 
+
+
 
 
