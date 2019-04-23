@@ -43,14 +43,15 @@ class Build
     {
         // 锁定
         $lockfile = $this->basePath . 'build.lock';
-
+        // 判断给定的文件名是否可写
         if (is_writable($lockfile)) {
             return;
-        } elseif (!touch($lockfile)) {
+        } elseif (!touch($lockfile)) { //touch — 设定文件的访问和修改时间
             throw new Exception('应用目录[' . $this->basePath . ']不可写，目录无法自动生成！<BR>请手动生成项目目录~', 10006);
         }
 
         foreach ($build as $module => $list) {
+//            var_dump($list);
             if ('__dir__' == $module) {
                 // 创建目录列表
                 $this->buildDir($list);
@@ -62,7 +63,6 @@ class Build
                 $this->module($module, $list, $namespace, $suffix);
             }
         }
-
         // 解除锁定
         unlink($lockfile);
     }
@@ -190,6 +190,7 @@ class Build
     public function buildRoute($suffix = false, $layer = '')
     {
         $namespace = $this->app->getNameSpace();
+//        var_dump($namespace);die;
         $content   = '<?php ' . PHP_EOL . '//根据 Annotation 自动生成的路由规则';
 
         if (!$layer) {
@@ -198,7 +199,7 @@ class Build
 
         if ($this->app->config('app.app_multi_module')) {
             $modules = glob($this->basePath . '*', GLOB_ONLYDIR);
-
+//            var_dump($modules);die;
             foreach ($modules as $module) {
                 $module = basename($module);
 
@@ -211,12 +212,14 @@ class Build
             }
         } else {
             $path = $this->basePath . $layer . DIRECTORY_SEPARATOR;
+//            var_dump($path);die;
             $content .= $this->buildDirRoute($path, $namespace, '', $suffix, $layer);
         }
 
         $filename = $this->app->getRuntimePath() . 'build_route.php';
+//        var_dump($filename);die;
         file_put_contents($filename, $content);
-
+//        var_dump($content);die;
         return $filename;
     }
 
@@ -234,12 +237,13 @@ class Build
     {
         $content     = '';
         $controllers = glob($path . '*.php');
-
+//        echo '<pre>';
+//        var_dump($controllers);die;
         foreach ($controllers as $controller) {
             $controller = basename($controller, '.php');
-
+//            var_dump($controller);die;
             $class = new \ReflectionClass($namespace . '\\' . ($module ? $module . '\\' : '') . $layer . '\\' . $controller);
-
+//            var_dump($class);die;
             if (strpos($layer, '\\')) {
                 // 多级控制器
                 $level      = str_replace(DIRECTORY_SEPARATOR, '.', substr($layer, 11));
@@ -261,7 +265,7 @@ class Build
         foreach ($subDir as $dir) {
             $content .= $this->buildDirRoute($dir . DIRECTORY_SEPARATOR, $namespace, $module, $suffix, $layer . '\\' . basename($dir));
         }
-
+//        var_dump($content);die;
         return $content;
     }
 

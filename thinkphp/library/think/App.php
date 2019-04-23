@@ -659,7 +659,7 @@ class App extends Container
             $module = $this->request->module();
         } else {
             if (strpos($name, '/')) {
-                var_dump(explode('/', $name, 2));die;
+//                var_dump(explode('/', $name, 2));die;
                 list($module, $name) = explode('/', $name, 2);
 
             } else {

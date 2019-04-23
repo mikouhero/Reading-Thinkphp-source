@@ -199,4 +199,27 @@
 >6、请求信息加入中间件  
 >7、获取中间件返回的结果   并返回
 
-
+# 3、函数
+ - 1、is_null()  
+- pathinfo($path,$option)   返回一个关联数组包含有 path 的信息。返回关联数组还是字符串取决于 options。   
+- var_export($mix,bool) 此函数返回关于传递给该函数的变量的结构信息，它和 var_dump() 类似，不同的是其返回的表示是合法的 PHP 代码。  此函数返回关于传递给该函数的变量的结构信息，它和 var_dump() 类似，不同的是其返回的表示是合法的 PHP 代码。 
+- scandir()  列出指定路径中的文件和目录
+- dirname()  路径中的目录部分
+- realpath()  返回规范化的绝对路径名
+- is_bool()
+- is_array()
+- is_object()
+- is_file()
+- is_callable() 检测参数是否为合法的可调用结构 
+- array_shift()
+- array_merge()
+- strip_tags()
+- strtolower()
+- strip_tags()
+- preg_match()
+- strlen()
+- substr()
+- microtime()
+- memory_get_usage () 分配给 PHP 的内存量
+- ini_set() 
+- explode()
