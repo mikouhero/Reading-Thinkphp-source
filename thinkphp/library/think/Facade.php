@@ -36,6 +36,7 @@ class Facade
     public static function bind($name, $class = null)
     {
         if (__CLASS__ != static::class) {
+//            var_dump(__CLASS__);die;
             return self::__callStatic('bind', func_get_args());
         }
 
@@ -58,9 +59,10 @@ class Facade
     protected static function createFacade($class = '', $args = [], $newInstance = false)
     {
         $class = $class ?: static::class;
-
+//echo 2;
+//        var_dump($class);
         $facadeClass = static::getFacadeClass();
-
+//var_dump($facadeClass);
         if ($facadeClass) {
             $class = $facadeClass;
         } elseif (isset(self::$bind[$class])) {
@@ -70,7 +72,7 @@ class Facade
         if (static::$alwaysNewInstance) {
             $newInstance = true;
         }
-
+//echo 4; 返回对象实例
         return Container::getInstance()->make($class, $args, $newInstance);
     }
 
@@ -120,6 +122,7 @@ class Facade
     // 调用实际类的方法
     public static function __callStatic($method, $params)
     {
+//echo 2;
         return call_user_func_array([static::createFacade(), $method], $params);
     }
 }

@@ -44,6 +44,7 @@ class Cache
     public function __construct(array $config = [])
     {
         $this->config = $config;
+//        var_dump($config);
         $this->init($config);
     }
 
@@ -56,17 +57,21 @@ class Cache
      */
     public function connect(array $options = [], $name = false)
     {
+//        var_dump($name);die;
         if (false === $name) {
             $name = md5(serialize($options));
         }
-
+//var_dump($options);
+//        var_dump($this->instance[$name]);
         if (true === $name || !isset($this->instance[$name])) {
+//            echo 11;
             $type = !empty($options['type']) ? $options['type'] : 'File';
 
             if (true === $name) {
                 $name = md5(serialize($options));
             }
 
+//                var_dump($options);
             $this->instance[$name] = Loader::factory($type, '\\think\\cache\\driver\\', $options);
         }
 
@@ -82,6 +87,7 @@ class Cache
      */
     public function init(array $options = [], $force = false)
     {
+//        echo 1;
         if (is_null($this->handler) || $force) {
 
             if ('complex' == $options['type']) {

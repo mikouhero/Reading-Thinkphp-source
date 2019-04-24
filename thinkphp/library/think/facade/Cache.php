@@ -40,6 +40,7 @@ class Cache extends Facade
      */
     protected static function getFacadeClass()
     {
+//        echo 3;
         return 'cache';
     }
 }
