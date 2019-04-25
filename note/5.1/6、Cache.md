@@ -11,7 +11,7 @@
 > 1、 通过工厂类加载 thinkcache\driver指定类 默认file 
 
 
-## 3 File 类
+## 3 File() 类
  
 ### 3、1 __construct($option)  构造函数
 > 1、合并配置信息  
@@ -51,6 +51,35 @@
 > 1、判断tag  
 > 2、扫描文件夹  
 > 3、删除  
+
+## 4、Lite()类  与File 基本相同 获取时返回数组
+
+
+## 5、Memcache()类
+### 5、1 __construct($option)  构造函数
+>1、判断是否支持memcache 扩展   
+>2、合并配置信息  
+>3、new Memcache（） 给 句柄对象，
+>3、连接服务 
+> 其他与file类似   
+
+## 6、 Memcached() 与Memcache() 相同
+
+
+## 7、Redis()
+### 7、1 __construct($option)  构造函数
+>1.1、redis 扩展   
+>1.2、合并配置信息  
+>1.3、是否那种方式连接 默认connect 所以使用pconnect代替connect，可以减少频繁建立redis连接的消耗。  
+>2.1 没有redis 扩展 ，\Predis外部类
+>其他方法类似  
+
+## 8 SqlLite() 
+>[SqlLite](https://www.php.net/manual/zh/book.sqlite.php "文档") 
+
+## Wincache()
+
+## Xcache()
 
 
  

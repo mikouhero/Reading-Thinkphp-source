@@ -34,11 +34,10 @@ class Index extends Controller
     {
 
 echo 0;
-//        Cache::connect();
-//                Cache::set('1','ad我的',0);
+                Cache::set('1','ad我的',0);
 
-//        echo Cache::get(1);
+        echo Cache::get(1);
 
-        Cache::clear();
+//        Cache::clear();
     }
 }

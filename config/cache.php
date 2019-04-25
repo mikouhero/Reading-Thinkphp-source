@@ -15,7 +15,7 @@
 
 return [
     // 驱动方式
-    'type'   => 'File',
+    'type'   => 'Lite', // File,Lite,Memcache，Memcahced,Redis ,Sqllite
     // 缓存保存目录
     'path'   => '',
     // 缓存前缀

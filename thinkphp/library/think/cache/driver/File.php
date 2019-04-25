@@ -279,7 +279,7 @@ class File extends Driver
         $this->writeTimes++;
 
         $files = (array) glob($this->options['path'] . ($this->options['prefix'] ? $this->options['prefix'] . DIRECTORY_SEPARATOR : '') . '*');
-
+//        var_dump($files);
         foreach ($files as $path) {
             if (is_dir($path)) {
                 $matches = glob($path . DIRECTORY_SEPARATOR . '*.php');
@@ -288,6 +288,7 @@ class File extends Driver
                 }
                 rmdir($path);
             } else {
+//                var_dump($path);
                 unlink($path);
             }
         }

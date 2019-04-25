@@ -78,6 +78,7 @@ class Lite extends Driver
 
         $filename = $this->getCacheKey($name);
 
+//        var_dump(realpath($filename));die;
         if (is_file($filename)) {
             // 判断是否过期
             $mtime = filemtime($filename);
@@ -118,13 +119,13 @@ class Lite extends Driver
         }
 
         $filename = $this->getCacheKey($name);
-
         if ($this->tag && !is_file($filename)) {
             $first = true;
         }
 
         $ret = file_put_contents($filename, ("<?php return " . var_export($value, true) . ";"));
 
+//        var_dump($ret);
         // 通过设置修改时间实现有效期
         if ($ret) {
             isset($first) && $this->setTagItem($filename);

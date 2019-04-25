@@ -34,7 +34,7 @@ class Memcache extends Driver
     public function __construct($options = [])
     {
         if (!extension_loaded('memcache')) {
-            throw new \BadFunctionCallException('not support: memcache');
+//            throw new \BadFunctionCallException('not support: memcache');
         }
 
         if (!empty($options)) {
