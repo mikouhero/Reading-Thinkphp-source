@@ -57,7 +57,7 @@ class Cache
      */
     public function connect(array $options = [], $name = false)
     {
-//        var_dump($name);die;
+//        var_dump($name);
         if (false === $name) {
             $name = md5(serialize($options));
         }
@@ -71,7 +71,7 @@ class Cache
                 $name = md5(serialize($options));
             }
 
-//                var_dump($options);
+//                var_dump($type);
             $this->instance[$name] = Loader::factory($type, '\\think\\cache\\driver\\', $options);
         }
 

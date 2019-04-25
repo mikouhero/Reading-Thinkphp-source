@@ -390,8 +390,14 @@ class Loader
      */
     public static function factory($name, $namespace = '', ...$args)
     {
+//        var_dump($name);
+
         $class = false !== strpos($name, '\\') ? $name : $namespace . ucwords($name);
 
+//        var_dump($name);
+//        var_dump($namespace);
+//
+//        var_dump($class);
         if (class_exists($class)) {
             return Container::getInstance()->invokeClass($class, $args);
         } else {

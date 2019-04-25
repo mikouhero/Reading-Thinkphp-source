@@ -78,19 +78,23 @@ class File extends Driver
      */
     protected function getCacheKey($name, $auto = false)
     {
+        // 生成hase值
         $name = hash($this->options['hash_type'], $name);
-
+//        var_dump($name);
         if ($this->options['cache_subdir']) {
             // 使用子目录
             $name = substr($name, 0, 2) . DIRECTORY_SEPARATOR . substr($name, 2);
         }
+//        var_dump($name);
 
         if ($this->options['prefix']) {
             $name = $this->options['prefix'] . DIRECTORY_SEPARATOR . $name;
         }
-
+//        var_dump($name);
+//var_dump($this->options['path']);
         $filename = $this->options['path'] . $name . '.php';
         $dir      = dirname($filename);
+//        var_dump($filename);
 
         if ($auto && !is_dir($dir)) {
             try {
@@ -98,7 +102,7 @@ class File extends Driver
             } catch (\Exception $e) {
             }
         }
-
+//var_dump($filename);
         return $filename;
     }
 
@@ -132,9 +136,10 @@ class File extends Driver
 
         $content      = file_get_contents($filename);
         $this->expire = null;
-
+//        var_dump($content);
         if (false !== $content) {
             $expire = (int) substr($content, 8, 12);
+//            var_dump($expire);
             if (0 != $expire && time() > filemtime($filename) + $expire) {
                 //缓存过期删除缓存文件
                 $this->unlink($filename);
@@ -143,7 +148,7 @@ class File extends Driver
 
             $this->expire = $expire;
             $content      = substr($content, 32);
-
+//            var_dump($content);
             if ($this->options['data_compress'] && function_exists('gzcompress')) {
                 //启用数据压缩
                 $content = gzuncompress($content);
@@ -171,6 +176,7 @@ class File extends Driver
         }
 
         $expire   = $this->getExpireTime($expire);
+//        var_dump($expire);die;
         $filename = $this->getCacheKey($name, true);
 
         if ($this->tag && !is_file($filename)) {
@@ -189,7 +195,7 @@ class File extends Driver
 
         if ($result) {
             isset($first) && $this->setTagItem($filename);
-            clearstatcache();
+            clearstatcache(); // 清除文件状态缓存
             return true;
         } else {
             return false;

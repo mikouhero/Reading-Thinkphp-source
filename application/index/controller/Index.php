@@ -32,10 +32,13 @@ class Index extends Controller
 
     public function testCache()
     {
-//        Cache::set('1',1,20);
-//        echo Cache::get(1);
 
 echo 0;
-        Cache::connect();
+//        Cache::connect();
+//                Cache::set('1','ad我的',0);
+
+//        echo Cache::get(1);
+
+        Cache::clear();
     }
 }
