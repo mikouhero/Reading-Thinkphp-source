@@ -74,12 +74,57 @@
 >2.1 没有redis 扩展 ，\Predis外部类
 >其他方法类似  
 
-## 8 SqlLite() 
+## 8、SqlLite() 
 >[SqlLite](https://www.php.net/manual/zh/book.sqlite.php "文档") 
 
-## Wincache()
+## 9、Wincache()
 
-## Xcache()
+## 10、Xcache()
+
+
+
+# 11 、Driver()   缓存基础抽象类
+    /**
+     * 驱动句柄
+     * @var object
+     */
+    protected $handler = null;
+
+    /**
+     * 缓存读取次数
+     * @var integer
+     */
+    protected $readTimes = 0;
+
+    /**
+     * 缓存写入次数
+     * @var integer
+     */
+    protected $writeTimes = 0;
+
+    /**
+     * 缓存参数
+     * @var array
+     */
+    protected $options = [];
+
+    /**
+     * 缓存标签
+     * @var string
+     */
+    protected $tag;
+
+### 11.1 getExpireTime() 获取有效期
+### 11.2 getCacheKey() 获取实际的缓存标识
+### 11.3 pull() 读取缓存并删除
+### 11.4 remember() 如果不存在则写入缓存
+### 11.5 tag() 缓存标签
+### 11.6 setTagItem() 更新标签
+### 11.7 getTagItem() 获取标签包含的缓存标识
+### 11.8 serialize() 序列化数据
+### 11.9 unserialize() 反序列化数据
+
+
 
 
  
