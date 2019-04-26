@@ -126,6 +126,28 @@
 
 
 
+## 函数
+
+- array_merge()   合并一个或多个数组
+- substr(string ,start,length)  返回字符串的子串
+- is_dir()
+- mkdir()
+- filemtime()     取得文件修改时间
+- function_exists()
+- gzuncompress() 数据解缩
+- gzcompress() 数据压缩
+- sprintf()  把百分号（%）符号替换成一个作为参数进行传递的变量
+- clearstatcache()  清除文件状态缓存
+- glob('*.php',path) 寻找与模式匹配的文件路径
+- array_map()
+- rmdir()
+- unlink()
+- is_file()
+- unlink()
+- explode()
+- extension_loaded()
+- class_exists()
+
 
  
  
