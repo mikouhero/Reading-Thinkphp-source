@@ -51,9 +51,14 @@ class Config implements \ArrayAccess
      */
     public function __construct($path = '', $ext = '.php')
     {
+
         $this->path   = $path;
         $this->ext    = $ext;
         $this->yaconf = class_exists('Yaconf');
+//        var_dump($this->path);
+//        var_dump($this->ext);
+//        var_dump($this->yaconf);
+
     }
 
     public static function __make(App $app)
@@ -100,7 +105,7 @@ class Config implements \ArrayAccess
         if (empty($type)) {
             $type = pathinfo($config, PATHINFO_EXTENSION);
         }
-
+//var_dump($config);
         $object = Loader::factory($type, '\\think\\config\\driver\\', $config);
 
         return $this->set($object->parse(), $name);
@@ -213,6 +218,7 @@ class Config implements \ArrayAccess
             }
         }
 
+//        var_dump($this->config);
         return isset($this->config[$name]) ? $this->config[$name] : [];
     }
 

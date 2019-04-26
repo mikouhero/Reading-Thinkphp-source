@@ -8,6 +8,7 @@ use think\Collection;
 use think\Container;
 use think\Controller;
 use think\facade\Cache;
+use think\facade\Config;
 
 class Index extends Controller
 {
@@ -64,5 +65,19 @@ class Index extends Controller
         var_dump($k);
 
 
+    }
+
+
+    public function config()
+    {
+        echo '<hr>';echo '<br>';echo '<pre>';
+////        Config::__make(new App());
+//
+//        $a  = Config::pull('cache');
+//        $a = Config::load('app.php','app');
+
+                $a  = Config::get('app.app_name');
+
+        var_dump($a);
     }
 }
