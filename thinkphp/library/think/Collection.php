@@ -437,7 +437,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
         return $this->sort(function ($a, $b) use ($field, $order, $intSort) {
             $fieldA = isset($a[$field]) ? $a[$field] : null;
             $fieldB = isset($b[$field]) ? $b[$field] : null;
-
+//        var_dump($fieldA);die;
             if ($intSort) {
                 return 'desc' == strtolower($order) ? $fieldB >= $fieldA : $fieldA >= $fieldB;
             } else {
