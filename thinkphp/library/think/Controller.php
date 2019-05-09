@@ -64,6 +64,9 @@ class Controller
         $this->request = $this->app['request'];
         $this->view    = $this->app['view'];
 
+//        var_dump($this->request);
+//        var_dump($this->view);
+
         // 控制器初始化
         $this->initialize();
 
@@ -84,6 +87,7 @@ class Controller
     // 注册控制器中间件
     public function registerMiddleware()
     {
+
         foreach ($this->middleware as $key => $val) {
             if (!is_int($key)) {
                 $only = $except = null;

@@ -287,7 +287,7 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
         if (!$newInstance) {
             $this->instances[$abstract] = $object;
         }
-
+//        var_dump($object);
         return $object;
     }
 

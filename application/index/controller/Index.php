@@ -12,6 +12,12 @@ use think\facade\Config;
 
 class Index extends Controller
 {
+//    protected $beforeActionList = [
+//        'first',
+//        'second' =>  ['except'=>'hello'],
+//        'three'  =>  ['only'=>'hello,data'],
+//    ];
+
     public function index()
     {
         return "hello world";
@@ -76,8 +82,13 @@ class Index extends Controller
 //        $a  = Config::pull('cache');
 //        $a = Config::load('app.php','app');
 
-                $a  = Config::get('app.app_name');
+                $a  = Config::get('app');
 
         var_dump($a);
+    }
+
+    public function controller()
+    {
+
     }
 }

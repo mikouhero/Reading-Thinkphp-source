@@ -235,7 +235,7 @@ class Config implements \ArrayAccess
         if ($name && false === strpos($name, '.')) {
             $name = $this->prefix . '.' . $name;
         }
-
+//        var_dump($name);
         // 无参数时获取所有
         if (empty($name)) {
             return $this->config;
@@ -265,6 +265,7 @@ class Config implements \ArrayAccess
                 return $default;
             }
         }
+//        var_dump($config);
         return $config;
     }
 
