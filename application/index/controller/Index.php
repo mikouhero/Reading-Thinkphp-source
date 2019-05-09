@@ -10,6 +10,8 @@ use think\Controller;
 use think\facade\Cache;
 use think\facade\Config;
 use think\facade\Cookie;
+use think\facade\Debug;
+use think\facade\Env;
 
 class Index extends Controller
 {
@@ -100,6 +102,20 @@ class Index extends Controller
         $data = Cookie::get(1);
         var_dump($data);
 
+    }
 
+    public function debug()
+    {
+        echo'<hr>';
+     $k =    Debug::remark(1);
+     var_dump($k);
+    }
+
+    public function env()
+    {
+        echo '<hr>';
+         Env::set('1',1);
+
+        var_dump(Env::get(1));
     }
 }

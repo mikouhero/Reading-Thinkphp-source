@@ -45,6 +45,7 @@ class Env
      */
     public function get($name = null, $default = null, $php_prefix = true)
     {
+//        var_dump($name);
         if (is_null($name)) {
             return $this->data;
         }
@@ -92,6 +93,8 @@ class Env
      */
     public function set($env, $value = null)
     {
+//        echo '<pre>';
+//        var_dump($env);
         if (is_array($env)) {
             $env = array_change_key_case($env, CASE_UPPER);
 
