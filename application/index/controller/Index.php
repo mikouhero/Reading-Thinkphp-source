@@ -9,6 +9,7 @@ use think\Container;
 use think\Controller;
 use think\facade\Cache;
 use think\facade\Config;
+use think\facade\Cookie;
 
 class Index extends Controller
 {
@@ -89,6 +90,16 @@ class Index extends Controller
 
     public function controller()
     {
+
+    }
+
+
+    public function cookie()
+    {
+//        Cookie::set('1',1);
+        $data = Cookie::get(1);
+        var_dump($data);
+
 
     }
 }

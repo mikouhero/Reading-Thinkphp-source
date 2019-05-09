@@ -11,3 +11,18 @@
 >https://www.php.net/manual/zh/function.call-user-func.php
 
 ## validate()
+
+
+- is_numeric()
+- is_int()
+- array_map()
+- strtolower()
+- in_array() 
+- is_string()
+- explode() 
+- call_user_func()
+- strpos()
+- is_callable()
+- call_user_func_array()
+- get_object_vars()
+
