@@ -12,6 +12,7 @@ use think\facade\Config;
 use think\facade\Cookie;
 use think\facade\Debug;
 use think\facade\Env;
+use think\File;
 
 class Index extends Controller
 {
@@ -117,5 +118,11 @@ class Index extends Controller
          Env::set('1',1);
 
         var_dump(Env::get(1));
+    }
+
+    public function file()
+    {
+        $file = new File('C:\phpStudy\WWW\t1.php');
+        var_dump($file);
     }
 }
