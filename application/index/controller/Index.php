@@ -125,4 +125,10 @@ class Index extends Controller
         $file = new File('C:\phpStudy\WWW\t1.php');
         var_dump($file);
     }
+
+
+    public function hook()
+    {
+
+    }
 }

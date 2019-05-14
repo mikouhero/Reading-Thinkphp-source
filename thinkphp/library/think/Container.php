@@ -264,8 +264,9 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
             $newInstance = true;
             $vars        = [];
         }
-
+//    var_dump($vars);die;
         $abstract = isset($this->name[$abstract]) ? $this->name[$abstract] : $abstract;
+//    var_dump($abstract);die;
 
         if (isset($this->instances[$abstract]) && !$newInstance) {
             return $this->instances[$abstract];
@@ -275,19 +276,22 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
             $concrete = $this->bind[$abstract];
 
             if ($concrete instanceof Closure) {
+//                echo 1;
                 $object = $this->invokeFunction($concrete, $vars);
             } else {
+
                 $this->name[$abstract] = $concrete;
                 return $this->make($concrete, $vars, $newInstance);
             }
         } else {
+
             $object = $this->invokeClass($abstract, $vars);
         }
 
         if (!$newInstance) {
             $this->instances[$abstract] = $object;
         }
-//        var_dump($object);
+
         return $object;
     }
 
